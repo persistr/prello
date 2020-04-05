@@ -1,16 +1,31 @@
-Example code for [persistr-react-trello](https://github.com/persistr/prello).
+# Welcome to prello 👋
 
-# Setup
+> simple full stack app
 
-Please clone the project, install the dependencies and fire up the project
+## Build
 
-```
-$ git clone git@github.com:persistr/prello.git
-$ cd prello
-$ npm install
-$ npm start
+```sh
+cd backend && npm run build
+cd frontend && npm run build
 ```
 
-## Acknowledgments
+## Install
 
-This project is based on react-trello-example project. It has been modified to use Persistr as the database
+```sh
+npm install
+cd backend && npm install
+cd frontend && npm install
+```
+
+## Usage
+
+```sh
+~ npm run start
+```
+
+## Author
+
+👤 **amir bidva**
+
+* Github: [@bidva](https://github.com/bidva)
+* LinkedIn: [@amir-bidva-854b7a75](https://linkedin.com/in/amir-bidva-854b7a75)
