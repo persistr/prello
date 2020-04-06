@@ -1,8 +1,6 @@
-import { InviteUserDTO } from "../dtos/index";
-import { UserInvited } from "krs-backend-es/dist/ocuser/domain";
-import buildEventMetadata from "../../../../utils/buildEventMetadata";
+import { SignUpUserDTO } from "../dtos/index";
+import { UserSignedUp } from "../events/UserSignedUp";
 
-export async function signUpUser(cmd: InviteUserDTO): Promise<any[]> {
-  const md = buildEventMetadata(cmd.metadata);
-  return [new UserInvited(md, cmd.email)];
+export async function signUpUser(cmd: SignUpUserDTO): Promise<any[]> {
+  return [new UserSignedUp(cmd.email)];
 }

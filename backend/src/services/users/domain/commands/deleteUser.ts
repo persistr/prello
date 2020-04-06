@@ -1,8 +1,6 @@
 import { DeleteUserDTO } from "../dtos/index";
-import buildEventMetadata from "../../../../utils/buildEventMetadata";
-import { UserDeleted } from "krs-backend-es/dist/ocuser/domain";
+import { UserDeleted } from "../events/UserDeleted";
 
 export async function deleteUser(cmd: DeleteUserDTO): Promise<any[]> {
-  const md = buildEventMetadata(cmd.metadata);
-  return [new UserDeleted(md)];
+  return [new UserDeleted()];
 }

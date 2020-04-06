@@ -1,16 +1,10 @@
 import { deleteUser } from "./deleteUser";
-import { inviteUser } from "./inviteUser";
-import { setUserDetails } from "./setUserDetails";
-import { verifyUser } from "./verifyUser";
+import { signUpUser } from "./signUpUser";
 
 export const UserCommands = {
-  inviteUser,
-  deleteUser,
-  setUserDetails,
-  verifyUser
+  signUpUser,
+  deleteUser
 };
 
-export { inviteUser };
+export { signUpUser };
 export { deleteUser };
-export { setUserDetails };
-export { verifyUser };

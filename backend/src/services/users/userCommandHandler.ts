@@ -1,5 +1,4 @@
 import { Persistr, persistr } from "@persistr/js";
-import { KaterEvent } from "krs-backend-es";
 import { v4 as uuid } from "uuid";
 
 const RETRY_MAX_ATTEMPTS = Number(process.env.COMMAND_RETRY_MAX_ATTEMPTS);
@@ -48,7 +47,7 @@ export default class UserCommandHandler {
   }
 
   public async writeToStream(
-    events: KaterEvent[],
+    events: any[],
     attemptCounter = 1,
     streamId?: string
   ): Promise<void> {

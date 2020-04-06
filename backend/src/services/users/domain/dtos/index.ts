@@ -1,16 +1,10 @@
-import { InviteUserDTO } from "./InviteUserDTO";
+import { SignUpUserDTO } from "./SignUpUserDTO";
 import { DeleteUserDTO } from "./DeleteUserDTO";
-import { SetUserDetailsDTO } from "./SetUserDetailsDTO";
-import { VerifyUserDTO } from "./VerifyUserDTO";
 
 export const UserDTOs = {
-  InviteUserDTO,
-  DeleteUserDTO,
-  SetUserDetailsDTO,
-  VerifyUserDTO
+  SignUpUserDTO,
+  DeleteUserDTO
 };
 
-export { InviteUserDTO };
+export { SignUpUserDTO };
 export { DeleteUserDTO };
-export { SetUserDetailsDTO };
-export { VerifyUserDTO };

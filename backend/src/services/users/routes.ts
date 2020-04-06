@@ -26,15 +26,11 @@ import { generateJwtToken } from "../../utils/generateJwtToken";
 // User ID Service
 import UserCommandHandler from "~/services/users/userCommandHandler";
 import {
-  InviteUserDTO,
-  SetUserDetailsDTO,
-  VerifyUserDTO,
+  SignUpUserDTO,
   DeleteUserDTO
 } from "./domain/dtos";
 import {
-  inviteUser,
-  setUserDetails,
-  verifyUser,
+  signUpUser,
   deleteUser
 } from "./domain/commands/";
 
@@ -101,15 +97,10 @@ export default function getRoutes(commandHandler: UserCommandHandler) {
             { expiresIn: "48h" }
           );
 
-          const payload: InviteUserDTO = {
-            email,
-            metadata: {
-              id: uuid(),
-              aggregate: id,
-              timestamp: new Date().toISOString()
-            }
+          const payload: SignUpUserDTO = {
+            email
           };
-          await inviteUser(payload)
+          await signUpUser(payload)
             .then(async event => {
               await commandHandler.writeToStream(event, 1, id);
               await res.status(200).json({
@@ -143,14 +134,9 @@ export default function getRoutes(commandHandler: UserCommandHandler) {
         const user = await getSingleUser({ id });
         if (user) {
           const payload: DeleteUserDTO = {
-            metadata: {
-              id: uuid(),
-              aggregate: id,
-              timestamp: new Date().toISOString()
-            }
           };
           await deleteUser(payload).then(async event => {
-            await commandHandler.writeToStream(event, 1, payload.metadata.id);
+            await commandHandler.writeToStream(event, 1);
             await res.status(200).json({
               success: true,
               message: "User Deleted! User: " + user.email + ""
