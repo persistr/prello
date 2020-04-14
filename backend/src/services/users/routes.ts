@@ -77,7 +77,7 @@ export default function getRoutes(commandHandler: UserCommandHandler) {
     ]),
     new Route("/signUp", "post", [
       async (req: Request, res: Response) => {
-        const { email } = req.body;
+        const { email, password } = req.body;
         let token: string;
         if (!email) {
           throw new HTTP400Error("Missing email address");
@@ -98,12 +98,13 @@ export default function getRoutes(commandHandler: UserCommandHandler) {
           );
 
           const payload: SignUpUserDTO = {
-            email
+            email,
+            password
           };
           await signUpUser(payload)
             .then(async event => {
               await commandHandler.writeToStream(event, 1, id);
-              await res.status(200).json({
+              res.status(200).json({
                 success: true,
                 message:
                   "User Created! User: " + email + ". Invitation Also Sent!"

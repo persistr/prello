@@ -1,23 +1,41 @@
-import { NextFunction, Request, Response } from "express";
 import { Route } from "../utils";
 import ItemService from "./items/itemService";
-const request = require("request-promise-native");
-import users from "./users/routes";
+import UserService from "./users/userService";
+import mongoose from "mongoose";
 
-export let item: any = null;
+export let itemsService: any = null;
+export let usersService: any = null;
 
-// server
+const connectToMongoDb = () => {
+  const db = mongoose.connection;
+  db.on("error", console.error.bind(console, "connection error:"));
+  db.once("open", () =>
+    console.log(`Connected successfully to mongodb database`)
+  );
+  mongoose.connect(process.env.MONGODB_URI||'', {
+    useCreateIndex: true,
+    useNewUrlParser: true,
+    useFindAndModify: false
+  });
+}
 
+// initializing services
 try {
-  item = new ItemService();
+  connectToMongoDb();
+  const dbName = 'example';
+  const nameSpace = 'tasks';
+  usersService = new UserService(dbName, nameSpace);
+  // itemsService = new ItemService();
 } catch (e) {
   console.error(e);
 }
 
 export const getRoutes = (): any => {
-  const itemsRoutes: Route[] = item.getRoutes();
+  const itemsRoutes: Route[] = itemsService.getRoutes();
+  const usersRoutes: Route[] = usersService.getRoutes();
 
   return [
     ...itemsRoutes,
+    ...usersRoutes
   ];
 };

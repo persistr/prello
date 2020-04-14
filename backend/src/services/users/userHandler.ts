@@ -10,20 +10,16 @@ const listenEvents: any[] = [
 ];
 
 export const handle = async (
-  event: any,
-  live?: boolean
+  event: any
 ): Promise<void> => {
   const query = { id: event.metadata.aggregate };
 };
 
 export default class UserHandler {
   constructor(
-    persistrApiKey: string,
-    spaceName: string,
-    domainName: string,
-    filterEvents: boolean
+    dbName, nameSpace
   ) {
-
+    super(dbName, nameSpace);
   }
 
   public async getUser(query: any, options?: any): Promise<UserDocs[]> {
