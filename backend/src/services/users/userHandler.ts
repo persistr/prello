@@ -1,5 +1,6 @@
 import models from "../../models";
 import { UserDocs } from "../../models/user";
+import BaseProjection from '../../utils/BaseProjection';
 import {
   UserDeleted,
   UserSignedUp
@@ -15,9 +16,10 @@ export const handle = async (
   const query = { id: event.metadata.aggregate };
 };
 
-export default class UserHandler {
+export default class UserHandler extends BaseProjection {
   constructor(
-    dbName, nameSpace
+    dbName: string,
+    nameSpace: string
   ) {
     super(dbName, nameSpace);
   }

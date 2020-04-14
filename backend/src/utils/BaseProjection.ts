@@ -6,22 +6,22 @@ export default class BaseProjection {
   private readonly events: any[];
 
   private account?: Persistr.Account;
-  private space?: Persistr.Space;
-  private domain?: Persistr.Domain;
+  private nameSpace?: Persistr.Space;
+  private dbName?: Persistr.Domain;
   private subscription: Persistr.Subscription | undefined;
   private componentName: string;
   private handle: Function;
 
   constructor(
     events: any[],
-    spaceName: string,
-    domainName: string,
+    dbName: Persistr.Space,
+    nameSpace: string,
     handle: Function,
     componentName: string
   ) {
     this.events = events;
-    this.spaceName = spaceName;
-    this.domainName = domainName;
+    this.nameSpace = nameSpace;
+    this.dbName = dbName;
     this.handle = handle;
     this.componentName = componentName;
   }
